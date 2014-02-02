@@ -6,8 +6,9 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # Source cs161-dotfiles definitions
-source ~/cs161-dotfiles/git-prompt.sh
-source ~/cs161-dotfiles/aliases.sh
+CS161_BASHRC_DIR=~/cs161-bashrc
+source $CS161_BASHRC_DIR/git-prompt.sh
+source $CS161_BASHRC_DIR/aliases.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
 
 # Colors
