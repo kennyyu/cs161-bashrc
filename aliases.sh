@@ -29,6 +29,9 @@ os161-debug() {
 }
 
 os161-user-build() {
+    pushd "$HOME/cs161/os161/"
+    bmake
+    popd
     pushd "$HOME/cs161/os161/userland"
     bmake depend && bmake && bmake install
     popd
