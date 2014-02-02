@@ -1,48 +1,43 @@
 # Useful aliases for cs161
 
-function os161-build {
-    cd ~/cs161/os161/kern/compile/${1} \
-    && bmake depend \
-    && bmake \
-    && bmake install
-    cd -
+os161-build() {
+    if [ -z "$1" ]; then
+        echo "Usage: kbuild ASSTN"
+        return 1
+    fi
+    pushd "$HOME/cs161/os161/kern/compile/$1"
+    bmake depend && bmake && bmake install
+    popd
 }
 
-function os161-config {
-    cd ~/cs161/os161/kern/conf \
-    && ./config ${1}
-    cd -
+os161-config() {
+    if [ -z "$1" ]; then
+        echo "Usage: kconfig ASSTN"
+        return 1
+    fi
+    pushd "$HOME/cs161/os161/kern/conf"
+    ./config "$1"
+    popd
 }
 
-function os161-run {
+os161-run() {
     cd ~/cs161/root && sys161 kernel
 }
 
-function os161-debug {
+os161-debug() {
     cd ~/cs161/root && sys161 -w kernel
 }
 
-function os161-user-build {
-    cd ~/cs161/os161/userland \
-    && bmake depend \
-    && bmake \
-    && bmake install
-    cd -
-}
-
-# Case insensitive search. Searches relative to the current directory
-function search {
-    git grep -n -i ${1}
-}
-
-# Finds "todo" (case insensitive) relative to the current directory
-function todo-search {
-    search "todo"
+os161-user-build() {
+    pushd "$HOME/cs161/os161/userland"
+    bmake depend && bmake && bmake install
+    popd
 }
 
 # Aliases for searching. Should run from top-level os161 directory
-alias gg='search'
-alias todo='todo-search'
+# e.g. gg "syscall"
+alias gg='git grep -ni'
+alias todo='gg TODO'
 
 # Aliases to config, build, run, debug, and start gdb
 # kc and kb take a configuration file in kern/conf as an argument.
@@ -62,6 +57,6 @@ alias ub='os161-user-build'
 alias ubuild=ub
 
 # Aliases to move to common directories
-alias cdk='cd ~/cs161/os161'
-alias cdr='cd ~/cs161/root'
-alias cdu='cd ~/cs161/os161/userland'
+alias cdk='cd $HOME/cs161/os161'
+alias cdr='cd $HOME/cs161/root'
+alias cdu='cd $HOME/cs161/os161/userland'
