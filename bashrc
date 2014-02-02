@@ -5,7 +5,7 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# Source cs161-dotfiles definitions
+# Source cs161 definitions
 CS161_BASHRC_DIR=~/cs161-bashrc
 source $CS161_BASHRC_DIR/git-prompt.sh
 source $CS161_BASHRC_DIR/aliases.sh
