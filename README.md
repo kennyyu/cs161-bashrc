@@ -8,7 +8,7 @@ By Kenny Yu
 ## Install
 
     cd ~
-    git clone git@github.com:kennyyu/cs161-bashrc.git
+    git clone https://github.com/kennyyu/cs161-bashrc.git
     cp ~/cs161-bashrc/bashrc ~/.bashrc && source ~/.bashrc
 
 ## Contents
