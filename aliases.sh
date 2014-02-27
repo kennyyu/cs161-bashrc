@@ -21,11 +21,11 @@ os161-config() {
 }
 
 os161-run() {
-    bash -c "cd ~/cs161/root && sys161 kernel"
+    bash -c "cd ~/cs161/root && sys161 kernel \"$@\""
 }
 
 os161-debug() {
-    bash -c "cd ~/cs161/root && sys161 -w kernel"
+    bash -c "cd ~/cs161/root && sys161 -w kernel \"$@\""
 }
 
 os161-user-build() {
