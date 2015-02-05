@@ -6,7 +6,8 @@ os161-build() {
         return 1
     fi
     pushd "$HOME/cs161/os161/kern/compile/$1"
-    bmake -j4 && bmake install -s
+    bmake -j4 || return 1
+    bmake install -s || return 2
     popd
 }
 
@@ -19,13 +20,13 @@ os161-config() {
     ./config "$1"
     popd
     pushd "$HOME/cs161/os161/kern/compile/$1"
-    bmake -s -j4 depend
+    bmake -s -j4 depend || return 1
     popd
     os161-build "$1"
 }
 
 os161-run() {
-    bash -c "cd ~/cs161/root && sys161 kernel \"$@\""
+    bash -c "cd ~/cs161/root sys161 kernel \"$@\""
 }
 
 os161-debug() {
@@ -35,14 +36,18 @@ os161-debug() {
 os161-user-build() {
     if [ "$1" ]; then
         pushd "$HOME/cs161/os161/userland/$1"
-        bmake depend -s && bmake && bmake install
+        bmake depend -s || return 1
+        bmake || return 2
+        bmake install || return 3
         return 0
     fi
     pushd "$HOME/cs161/os161/"
     bmake -s
     popd
     pushd "$HOME/cs161/os161/userland"
-    bmake -s -j4 depend && bmake -s -j4 && bmake install -s -j4
+    bmake -s -j4 depend || return 1
+    &make -s -j4 || return 2
+    bmake install -s -j4 || return 3
     popd
 }
 
