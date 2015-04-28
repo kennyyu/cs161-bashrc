@@ -147,4 +147,4 @@ alias ubuild=ub
 # Aliases to move to common directories
 alias cdk="cd ${OS161_CODE_DIR}"
 alias cdr="cd ${OS161_ROOT_DIR}"
-alias cdu="cd ${OS161_COE_DIR}/userland"
+alias cdu="cd ${OS161_CODE_DIR}/userland"
