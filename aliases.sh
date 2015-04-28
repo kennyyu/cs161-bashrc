@@ -18,12 +18,10 @@ os161-config() {(
         echo "Usage: $0 ASSTN"
         return 22
     fi
-    pushd "${OS161_CODE_DIR}/kern/conf"
+    cd "${OS161_CODE_DIR}/kern/conf"
     ./config "$1"
-    popd > /dev/null
-    pushd "${OS161_CODE_DIR}/kern/compile/$1"
+    cd "${OS161_CODE_DIR}/kern/compile/$1"
     bmake -s depend || return 1
-    popd > /dev/null
     os161-build "$1"
 )}
 
@@ -107,20 +105,18 @@ os161-debug() {(
 
 os161-user-build() {(
     if [ "$1" ]; then
-        pushd "${OS161_CODE_DIR}/userland/$1"
+        cd "${OS161_CODE_DIR}/userland/$1" > /dev/null
         bmake depend || return 1
         bmake || return 2
         bmake install || return 3
         return 0
     fi
-    pushd ${OS161_ROOT_DIR}
+    cd ${OS161_CODE_DIR} > /dev/null
     bmake -s || return 4
-    popd > /dev/null
-    pushd "${OS161_ROOT_DIR}/userland"
+    cd "${OS161_CODE_DIR}/userland" > /dev/null
     bmake -s depend || return 5
     bmake -s || return 6
     bmake install -s || return 7
-    popd > /dev/null
     )}
 
 # Aliases for searching. Should run from top-level os161 directory
