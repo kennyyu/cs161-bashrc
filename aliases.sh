@@ -45,6 +45,9 @@ os161-runtest() {(
    log_user 1;
    set timeout '${TEST161_TIME_LIMIT}';
    expect {
+     "fail" {
+       send_user "\r\x1b\[K\x1b\[33m❌  test161: test outputted \"fail\" \"'$@'\" \x1b\[0m\n";
+     }
      "Operation took" {
         expect {
           "OS/161 kernel" {
