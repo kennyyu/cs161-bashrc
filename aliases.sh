@@ -79,7 +79,7 @@ os161-test() {(
 )}
 
 os161-testsuite() {(
-    os161-test at bt tlt km1 km2 km3 km4 tt1 tt2 tt3 sy1 sy2 sy3 sy4 "fs1 emu0:" fs2 fs3 fs4 fs5 fs6 ut1 ut6 vm1 vm2 vm3 vm4
+    os161-test at bt tlt km1 km2 "km3 300" km4 tt1 tt2 tt3 sy1 sy2 sy3 sy4 "fs1 emu0:" "fs2 emu0:" "fs3 emu0:" "fs4 emu0:" "fs5 emu0:" "fs6 emu0:"
 )}
 
 os161-diskdiff() {
