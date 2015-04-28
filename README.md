@@ -5,6 +5,17 @@ bashrc file for cs161 development
 
 By Kenny Yu
 
+## Dependencies
+
+These tools require expect and rlwrap
+
+### Mac
+
+    brew install rlwrap
+
+### Ubuntu
+    sudo apt-get install rlwrap expect
+
 ## Install
 
     cd ~
